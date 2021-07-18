@@ -37,9 +37,9 @@ tasks.register("clean", Delete::class) {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "org.pkt"
-            artifactId = "final"
-            version = "0.0.2"
+            groupId = "com.github.ryukw7"
+            artifactId = "pkt"
+            version = "0.0.3"
         }
     }
 }
