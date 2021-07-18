@@ -39,7 +39,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "org.pkt"
             artifactId = "final"
-            version = "0.0.1"
+            version = "0.0.2"
         }
     }
 }
