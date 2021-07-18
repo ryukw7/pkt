@@ -1,52 +1,36 @@
 plugins {
-    kotlin("multiplatform") version "1.5.10"
+    id("com.github.ben-manes.versions") version ver.gradle_versions_plugin
 }
 
-group = "me.kiwan"
+group = "org.pkt"
 version = "0.0.1"
 
-repositories {
-    mavenCentral()
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        LibDependencies.classpaths.forEach { classpath(it) }
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
 }
 
-kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-        testRuns["test"].executionTask.configure {
-            useJUnit()
-        }
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
     }
-    js(LEGACY) {
-        browser {
-            commonWebpackConfig {
-                cssSupport.enabled = true
-            }
-        }
-    }
-    val hostOs = System.getProperty("os.name")
-    val isMingwX64 = hostOs.startsWith("Windows")
-    val nativeTarget = when {
-        hostOs == "Mac OS X" -> macosX64("native")
-        hostOs == "Linux" -> linuxX64("native")
-        isMingwX64 -> mingwX64("native")
-        else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
-    }
+}
 
-    
-    sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-        val jvmMain by getting
-        val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
-        val nativeMain by getting
-        val nativeTest by getting
-    }
+listOf(
+        "test-report",
+        "versions-plugin"
+).forEach { apply(from = "common/${it}.gradle") }
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
 }

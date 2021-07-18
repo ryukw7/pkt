@@ -1,3 +1,2 @@
-
-rootProject.name = "pkt"
-
+include(":library")
+rootProject.name = "pico kt library"

@@ -1,0 +1,17 @@
+apply plugin: "com.github.ben-manes.versions"
+
+dependencyUpdates.resolutionStrategy({
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            selection.candidate.with {
+                boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
+                    version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+                }
+
+                if (rejected) {
+                    selection.reject('Release candidate')
+                }
+            }
+        }
+    }
+})

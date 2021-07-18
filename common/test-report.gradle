@@ -1,0 +1,143 @@
+// How to collect and print out tests summary in Gradle
+//      : https://medium.com/@wasyl/pretty-tests-summary-in-gradle-744804dd676c
+import groovy.time.TimeCategory
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+// Gradle color output
+//      : https://stackoverflow.com/questions/14516693/gradle-color-output
+import org.gradle.internal.logging.text.StyledTextOutputFactory
+import static org.gradle.internal.logging.text.StyledTextOutput.Style
+
+def out = services.get(StyledTextOutputFactory).create("an-ouput")
+// color println example
+//out.style(Style.ProgressStatus).text('This is ').style(Style.Failure).text('a multicolor ').style(Style.Identifier).println('line')
+
+ext {
+    testsResults = [] // Container for tests summaries
+
+    tasksResult = [
+            passed: [],
+            failed: []
+    ]
+
+    testCount = [
+            total: 0,
+            pass : 0,
+            fail : 0,
+    ]
+}
+
+allprojects { project ->
+    tasks.withType(Test) { testTask ->
+
+        testTask.testLogging { logging ->
+            events TestLogEvent.FAILED,
+                    TestLogEvent.SKIPPED,
+                    TestLogEvent.STANDARD_OUT,
+                    TestLogEvent.STANDARD_ERROR
+
+            exceptionFormat TestExceptionFormat.FULL
+            showExceptions true
+            showCauses true
+            showStackTraces true
+        }
+
+        ignoreFailures = true // Always try to run all tests for all modules
+
+        afterSuite { desc, result ->
+
+            if (desc.parent) return // Only summarize results for whole modules
+            if (result.testCount == 0) return
+
+            testCount.total += result.testCount
+            testCount.pass += result.testCount - result.failedTestCount
+            testCount.fail += result.failedTestCount
+
+            if (result.failedTestCount == 0) {
+                rootProject.tasksResult.passed += testTask.project.name
+            } else {
+                rootProject.tasksResult.failed += testTask.project.name
+            }
+
+            String summary = "Project: ${testTask.project.name}: ${result.resultType} " +
+                    "(" +
+                    "${result.testCount} tests, " +
+                    "${result.successfulTestCount} successes, " +
+                    "${result.failedTestCount} failures, " +
+                    "${result.skippedTestCount} skipped" +
+                    ") " +
+                    "in ${TimeCategory.minus(new Date(result.endTime), new Date(result.startTime))}" +
+                    "\n" +
+                    "Report:" +
+                    "\n" +
+                    "  file://${testTask.reports.html.entryPoint}"
+
+            // Add reports in `testsResults`, keep failed suites at the end
+            if (result.resultType == TestResult.ResultType.SUCCESS) {
+                rootProject.testsResults.add(0, summary)
+            } else {
+                rootProject.testsResults += summary
+            }
+        }
+    }
+}
+
+def yellow = Style.ProgressStatus
+def green = Style.Identifier
+def red = Style.Failure
+def separatorWidth = 115
+
+def printTotalTestCount = {
+    out.style(yellow).text("Total")
+    out.style(yellow).text("/")
+    out.style(green).text("Pass")
+    out.style(yellow).text("/")
+    out.style(red).text("Fail")
+    out.style(yellow).text(" count: ")
+    out.style(yellow).text("${testCount.total}")
+    out.style(yellow).text("/")
+    out.style(green).text("${testCount.pass}")
+    out.style(yellow).text("/")
+    out.style(red).println("${testCount.fail}")
+    println('-' * separatorWidth)
+
+    if (ext.tasksResult.passed.size > 0) {
+        out.style(green).println("Passed:")
+        ext.tasksResult.passed.each {
+            out.style(yellow).println("  - $it")
+        }
+    }
+    if (ext.tasksResult.failed.size > 0) {
+        out.style(red).println("Failed:")
+        ext.tasksResult.failed.each {
+            out.style(yellow).println("  - $it")
+        }
+    }
+}
+
+gradle.buildFinished {
+    def allResults = rootProject.ext.testsResults
+    if (allResults.isEmpty()) {
+        return
+    }
+
+    println('=' * separatorWidth)
+    printResults allResults
+    printTotalTestCount()
+    println('=' * separatorWidth)
+}
+
+private static void printResults(allResults) {
+    def maxLength = allResults*.readLines().flatten().collect { it.length() }.max()
+
+    println "┌${"${"─" * maxLength}"}┐"
+
+    println allResults.collect {
+        it.readLines().collect {
+            "│" + it + " " * (maxLength - it.length()) + "│"
+        }.join("\n")
+    }.join("\n├${"${"─" * maxLength}"}┤\n")
+
+    println "└${"${"─" * maxLength}"}┘"
+}
