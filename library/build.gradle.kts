@@ -12,7 +12,7 @@ android {
         minSdkVersion(26)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "0.0.4"
+        versionName = "0.0.5"
     }
 
     sourceSets.getByName("main") {
@@ -28,12 +28,14 @@ dependencies {
     testImplementation(LibDependencies.testDeps)
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = "com.github.ryukw7"
-            artifactId = "pkt"
-            version = "0.0.4"
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "com.github.ryukw7"
+                artifactId = "pkt"
+                version = "0.0.5"
+            }
         }
     }
 }
