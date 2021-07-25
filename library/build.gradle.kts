@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    `maven-publish`
 }
 
 android {
@@ -26,3 +27,14 @@ dependencies {
     implementation(LibDependencies.mainDeps)
     testImplementation(LibDependencies.testDeps)
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.ryukw7"
+            artifactId = "pkt"
+            version = "0.0.6"
+        }
+    }
+}
+
