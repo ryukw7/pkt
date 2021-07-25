@@ -1,4 +1,5 @@
 plugins {
+    `maven-publish`
     id("com.github.ben-manes.versions") version ver.gradle_versions_plugin
 }
 
@@ -31,4 +32,14 @@ listOf(
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.ryukw7"
+            artifactId = "pkt"
+            version = "0.0.3"
+        }
+    }
 }
