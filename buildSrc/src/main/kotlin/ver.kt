@@ -2,7 +2,7 @@ object ver {
     const val lib = "0.0.15"
     // @formatter:off ---------------------------------- //
     // classpath
-    const val kotlin                     = "1.5.21"
+    const val kotlin                     = "1.5.31"
     const val android_tools_build_gradle = "4.1.3"
 //    const val android_tools_build_gradle = "4.2.1" // IntelliJ에서 gradle 구성 실패
 //    const val android_tools_build_gradle = "4.2.2" // IntelliJ에서 gradle 구성 실패
