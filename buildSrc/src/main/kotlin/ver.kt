@@ -1,6 +1,9 @@
 object ver {
-    const val lib = "0.0.15"
     // @formatter:off ---------------------------------- //
+    const val lib                        = "0.0.16"
+    const val groupId                    = "com.github.ryukw7"
+    const val artifactId                 = "pkt"
+
     // classpath
     const val kotlin                     = "1.5.31"
     const val android_tools_build_gradle = "4.1.3"

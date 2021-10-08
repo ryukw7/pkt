@@ -10,7 +10,7 @@ repositories {
     maven(url = "https://jitpack.io")
 }
 
-group = "com.github.ryukw7"
+group = ver.groupId
 version = ver.lib
 
 android {
@@ -52,5 +52,16 @@ dependencies {
     testImplementation(LibDependencies.testDeps)
 }
 
-// FIXME: remove(convert) publishing.gradle
-apply(from = "publishing.gradle")
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                // Applies the component for the release build variant.
+                from(components["release"])
+                groupId = ver.groupId
+                artifactId = ver.artifactId
+                version = ver.lib
+            }
+        }
+    }
+}
