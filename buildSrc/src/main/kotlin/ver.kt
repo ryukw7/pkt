@@ -1,5 +1,5 @@
 object ver {
-    const val lib = "0.0.12"
+    const val lib = "0.0.15"
     // @formatter:off ---------------------------------- //
     // classpath
     const val kotlin                     = "1.5.21"

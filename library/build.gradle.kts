@@ -52,13 +52,5 @@ dependencies {
     testImplementation(LibDependencies.testDeps)
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = "com.github.ryukw7"
-            artifactId = "pkt"
-            version = ver.lib
-        }
-    }
-}
-
+// FIXME: remove(convert) publishing.gradle
+apply(from = "publishing.gradle")

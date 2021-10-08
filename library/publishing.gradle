@@ -1,0 +1,13 @@
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = "com.github.ryukw7"
+                artifactId = "pkt"
+                version = "0.0.15"
+            }
+        }
+    }
+}
