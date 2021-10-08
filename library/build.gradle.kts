@@ -11,7 +11,7 @@ repositories {
 }
 
 group = "com.github.ryukw7"
-version = "0.0.10"
+version = "0.0.11"
 
 android {
     compileSdkVersion(30)
@@ -21,7 +21,7 @@ android {
         minSdkVersion(26)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "0.0.10"
+        versionName = "0.0.11"
     }
 
     buildTypes {
@@ -29,6 +29,14 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     sourceSets.getByName("main") {
