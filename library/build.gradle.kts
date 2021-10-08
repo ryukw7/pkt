@@ -11,7 +11,7 @@ repositories {
 }
 
 group = "com.github.ryukw7"
-version = "0.0.11"
+version = ver.lib
 
 android {
     compileSdkVersion(30)
@@ -21,7 +21,7 @@ android {
         minSdkVersion(26)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "0.0.11"
+        versionName = ver.lib
     }
 
     buildTypes {
@@ -52,15 +52,13 @@ dependencies {
     testImplementation(LibDependencies.testDeps)
 }
 
-apply(from = "publishing.gradle")
-
-//publishing {
-//    publications {
-//        create<MavenPublication>("maven") {
-//            groupId = "com.github.ryukw7"
-//            artifactId = "pkt"
-//            version = "0.0.8"
-//        }
-//    }
-//}
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.ryukw7"
+            artifactId = "pkt"
+            version = ver.lib
+        }
+    }
+}
 
