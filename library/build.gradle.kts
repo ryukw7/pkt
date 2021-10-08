@@ -11,7 +11,7 @@ repositories {
 }
 
 group = "com.github.ryukw7"
-version = "0.0.9"
+version = "0.0.10"
 
 android {
     compileSdkVersion(30)
@@ -21,7 +21,14 @@ android {
         minSdkVersion(26)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "0.0.9"
+        versionName = "0.0.10"
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
     }
 
     sourceSets.getByName("main") {

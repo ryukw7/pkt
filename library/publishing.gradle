@@ -6,7 +6,7 @@ afterEvaluate {
                 from components.release
                 groupId = "com.github.ryukw7"
                 artifactId = "pkt"
-                version = "0.0.9"
+                version = "0.0.10"
             }
         }
     }
