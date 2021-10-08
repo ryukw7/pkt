@@ -12,7 +12,7 @@ android {
         minSdkVersion(26)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "0.0.6"
+        versionName = "0.0.7"
     }
 
     sourceSets.getByName("main") {
@@ -33,7 +33,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.ryukw7"
             artifactId = "pkt"
-            version = "0.0.6"
+            version = "0.0.7"
         }
     }
 }
