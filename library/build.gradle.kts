@@ -18,7 +18,7 @@ android {
     buildToolsVersion("30.0.3")
 
     defaultConfig {
-        minSdkVersion(26)
+        minSdkVersion(17)
         targetSdkVersion(30)
         versionCode = 1
         versionName = ver.lib
