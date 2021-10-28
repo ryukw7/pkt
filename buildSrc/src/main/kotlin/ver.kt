@@ -1,6 +1,6 @@
 object ver {
     // @formatter:off ---------------------------------- //
-    const val lib                        = "0.0.16"
+    const val lib                        = "0.0.17"
     const val groupId                    = "com.github.ryukw7"
     const val artifactId                 = "pkt"
 
