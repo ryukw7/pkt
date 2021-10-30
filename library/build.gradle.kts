@@ -48,8 +48,7 @@ android {
 }
 
 dependencies {
-    implementation(LibDependencies.mainDeps)
-    testImplementation(LibDependencies.testDeps)
+    set(deps.pkt)
 }
 
 afterEvaluate {

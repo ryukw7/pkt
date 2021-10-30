@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        LibDependencies.classpaths.forEach { classpath(it) }
+        deps.classpaths.forEach { classpath(it) }
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
