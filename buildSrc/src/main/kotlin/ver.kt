@@ -5,7 +5,7 @@ object ver {
     const val artifactId                 = "pkt"
 
     // classpath
-    const val kotlin                     = "1.5.31"
+    const val kotlin                     = "1.6.0"
     const val android_tools_build_gradle = "4.1.3"
 //    const val android_tools_build_gradle = "4.2.1" // IntelliJ에서 gradle 구성 실패
 //    const val android_tools_build_gradle = "4.2.2" // IntelliJ에서 gradle 구성 실패
