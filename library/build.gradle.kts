@@ -20,8 +20,6 @@ android {
     defaultConfig {
         minSdkVersion(17)
         targetSdkVersion(30)
-        versionCode = 1
-        versionName = ver.lib
     }
 
     buildTypes {
