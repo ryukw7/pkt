@@ -14,13 +14,13 @@ group = ver.groupId
 version = ver.lib
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion("30.0.3")
+    compileSdk =30
+//    buildToolsVersion("30.0.3")
 
-    defaultConfig {
-        minSdkVersion(17)
-        targetSdkVersion(30)
-    }
+//    defaultConfig {
+//        minSdkVersion(17)
+//        targetSdkVersion(30)
+//    }
 
     buildTypes {
         getByName("release") {
