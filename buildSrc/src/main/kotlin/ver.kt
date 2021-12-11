@@ -6,7 +6,7 @@ object ver {
 
     // classpath
     const val kotlin                     = "1.6.0"
-    const val android_tools_build_gradle = "7.0.3"
+    const val android_tools_build_gradle = "7.0.4"
 //    const val android_tools_build_gradle = "4.2.1" // IntelliJ에서 gradle 구성 실패
 //    const val android_tools_build_gradle = "4.2.2" // IntelliJ에서 gradle 구성 실패
     const val gradle_versions_plugin     = "0.39.0"
