@@ -9,13 +9,7 @@ object ver {
     const val gradle_versions_plugin = "0.39.0"
 
     // implementation
-    const val gson = "2.8.7"
-    const val coreKtx = "1.6.0"
-    const val logback = "2.0.0"
-    const val klogging = "2.0.10"
-    const val koin = "3.1.2"
-    const val kotlinx_serialization_json = "1.2.2"
-    const val kotlinx_serialization_converter = "0.8.0"
+    // ..
 
     // test dependencies
     const val junit = "4.13.2"
