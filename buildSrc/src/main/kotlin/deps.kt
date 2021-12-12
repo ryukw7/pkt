@@ -7,14 +7,12 @@ object deps {
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${ver.kotlin}"
     )
 
-    // @formatter:off ------------------------------------------------------------------------- //
     // std lib
     private const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${ver.kotlin}"
 
     // test
-    private const val junit        = "junit:junit:${ver.junit}"
-    private const val kotlintest   = "io.kotlintest:kotlintest-assertions:${ver.kotlintest}"
-    // @formatter:on    ----------------------------------------------------------------------- //
+    private const val junit = "junit:junit:${ver.junit}"
+    private const val kotlintest = "io.kotlintest:kotlintest-assertions:${ver.kotlintest}"
 
     object pkt : DepsInterface {
         override val impls = listOf(
