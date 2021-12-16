@@ -86,7 +86,7 @@ allprojects { project ->
 def yellow = Style.ProgressStatus
 def green = Style.Identifier
 def red = Style.Failure
-def separatorWidth = 115
+def separatorWidth = 101
 
 def printTotalTestCount = {
     out.style(yellow).text("Total")
