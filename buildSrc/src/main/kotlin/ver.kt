@@ -1,5 +1,5 @@
 object ver {
-    const val lib = "0.0.22"
+    const val lib = "0.0.23"
     const val groupId = "com.github.ryukw7"
     const val artifactId = "pkt"
 
