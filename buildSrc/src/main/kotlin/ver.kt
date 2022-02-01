@@ -6,7 +6,7 @@ object ver {
     // classpath
     const val kotlin = "1.6.10"
     const val android_tools_build_gradle = "7.0.4"
-    const val gradle_versions_plugin = "0.40.0"
+    const val gradle_versions_plugin = "0.41.0"
 
     // implementation
     // ..
